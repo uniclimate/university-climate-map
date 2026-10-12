@@ -30,31 +30,31 @@ footer{padding:12px 16px;background:white;color:#64748b;font-size:11px;border-to
 <script>
 /* 以下のスコアは画面動作確認用の仮データで、実測値・公式評価ではありません。 */
 const universities=[
-{name:"北海道大学（札幌）",region:"北海道",lat:43.0766,lon:141.3403,heat:17,rain:14,snow:7,quake:16,comment:"冬の積雪・寒さへの備えが大切。"},
-{name:"弘前大学（文京町）",region:"青森県",lat:40.5895,lon:140.4712,heat:16,rain:13,snow:6,quake:15,comment:"冬の雪や路面状況を確認したい地域。"},
-{name:"秋田大学（手形）",region:"秋田県",lat:39.7298,lon:140.1365,heat:15,rain:12,snow:6,quake:15,comment:"冬の積雪・季節風を確認したい地域。"},
-{name:"東北大学（川内）",region:"宮城県",lat:38.2555,lon:140.8364,heat:15,rain:14,snow:13,quake:11,comment:"暑さ・雨・地震リスクを個別に確認。"},
-{name:"筑波大学",region:"茨城県",lat:36.1113,lon:140.1010,heat:12,rain:14,snow:16,quake:12,comment:"夏の暑さや雷雨への備えを確認。"},
-{name:"東京大学（本郷）",region:"東京都",lat:35.7126,lon:139.7628,heat:10,rain:14,snow:18,quake:10,comment:"夏の暑さ・大雨・地震への備えを確認。"},
-{name:"早稲田大学（早稲田）",region:"東京都",lat:35.7056,lon:139.7190,heat:10,rain:14,snow:18,quake:10,comment:"夏の暑さ・大雨・地震への備えを確認。"},
-{name:"金沢大学（角間）",region:"石川県",lat:36.5466,lon:136.7080,heat:14,rain:11,snow:10,quake:13,comment:"冬の雪・雨の多さ・地震情報を確認。"},
-{name:"名古屋大学（東山）",region:"愛知県",lat:35.1555,lon:136.9667,heat:9,rain:12,snow:18,quake:9,comment:"夏の暑さや大雨、地震への備えを確認。"},
-{name:"京都大学（吉田）",region:"京都府",lat:35.0262,lon:135.7808,heat:10,rain:13,snow:17,quake:11,comment:"夏の暑さや大雨への備えを確認。"},
-{name:"大阪大学（豊中）",region:"大阪府",lat:34.8024,lon:135.4610,heat:10,rain:13,snow:18,quake:10,comment:"夏の暑さ・大雨・地震への備えを確認。"},
-{name:"神戸大学（六甲台）",region:"兵庫県",lat:34.7250,lon:135.2360,heat:11,rain:13,snow:17,quake:10,comment:"雨の日の移動や地震への備えを確認。"},
-{name:"広島大学（東広島）",region:"広島県",lat:34.4013,lon:132.7135,heat:12,rain:11,snow:17,quake:13,comment:"夏の暑さと大雨への備えを確認。"},
-{name:"九州大学（伊都）",region:"福岡県",lat:33.5968,lon:130.2205,heat:11,rain:11,snow:18,quake:13,comment:"台風・大雨・夏の暑さを確認。"},
-{name:"琉球大学（千原）",region:"沖縄県",lat:26.2500,lon:127.7650,heat:7,rain:10,snow:20,quake:14,comment:"暑さ・台風・強い雨への備えが大切。"}
+{name:"北海道大学（札幌）",region:"北海道",lat:43.0766,lon:141.3403,heat:17,rain:14,temperature:7,quake:16,flood:10,comment:"冬の積雪・寒さへの備えが大切。"},
+{name:"弘前大学（文京町）",region:"青森県",lat:40.5895,lon:140.4712,heat:16,rain:13,temperature:6,quake:15,flood:10,comment:"冬の雪や路面状況を確認したい地域。"},
+{name:"秋田大学（手形）",region:"秋田県",lat:39.7298,lon:140.1365,heat:15,rain:12,temperature:6,flood:10,quake:15,comment:"冬の積雪・季節風を確認したい地域。"},
+{name:"東北大学（川内）",region:"宮城県",lat:38.2555,lon:140.8364,heat:15,rain:14,temperature:13,quake:11,comment:"暑さ・雨・地震リスクを個別に確認。"},
+{name:"筑波大学",region:"茨城県",lat:36.1113,lon:140.1010,heat:12,rain:14,temperature:16,flood:10,quake:12,comment:"夏の暑さや雷雨への備えを確認。"},
+{name:"東京大学（本郷）",region:"東京都",lat:35.7126,lon:139.7628,heat:10,rain:14,temperature:18,flood:10,quake:10,comment:"夏の暑さ・大雨・地震への備えを確認。"},
+{name:"早稲田大学（早稲田）",region:"東京都",lat:35.7056,lon:139.7190,heat:10,rain:14,temperature:18,flood:10,quake:10,comment:"夏の暑さ・大雨・地震への備えを確認。"},
+{name:"金沢大学（角間）",region:"石川県",lat:36.5466,lon:136.7080,heat:14,rain:11,temperature:10,flood:10,quake:13,comment:"冬の雪・雨の多さ・地震情報を確認。"},
+{name:"名古屋大学（東山）",region:"愛知県",lat:35.1555,lon:136.9667,heat:9,rain:12,temperature:18,flood:10,quake:9,comment:"夏の暑さや大雨、地震への備えを確認。"},
+{name:"京都大学（吉田）",region:"京都府",lat:35.0262,lon:135.7808,heat:10,rain:13,temperature:17,flood:10,quake:11,comment:"夏の暑さや大雨への備えを確認。"},
+{name:"大阪大学（豊中）",region:"大阪府",lat:34.8024,lon:135.4610,heat:10,rain:13,temperature:18,flood:10,quake:10,comment:"夏の暑さ・大雨・地震への備えを確認。"},
+{name:"神戸大学（六甲台）",region:"兵庫県",lat:34.7250,lon:135.2360,heat:11,rain:13,temperature:17,flood:10,quake:10,comment:"雨の日の移動や地震への備えを確認。"},
+{name:"広島大学（東広島）",region:"広島県",lat:34.4013,lon:132.7135,heat:12,rain:11,temperature:17,flood:10,quake:13,comment:"夏の暑さと大雨への備えを確認。"},
+{name:"九州大学（伊都）",region:"福岡県",lat:33.5968,lon:130.2205,heat:11,rain:11,temperature:18,flood:10,quake:13,comment:"台風・大雨・夏の暑さを確認。"},
+{name:"琉球大学（千原）",region:"沖縄県",lat:26.2500,lon:127.7650,heat:7,rain:10,temperature:20,flood:10,quake:14,comment:"暑さ・台風・強い雨への備えが大切。"}
 ];
 const map=L.map('map').setView([37.2,137.8],5);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:18}).addTo(map);
 const markers=[],list=document.getElementById('university-list'),search=document.getElementById('search');
 function popup(u){return `<div class="popup-title">${u.name}</div><div class="popup-sub">${u.region}・位置は概略</div>
-<div class="metric"><span>暑さへの配慮（仮）</span><b>${u.heat}/20</b></div>
-<div class="metric"><span>雨の少なさ（仮）</span><b>${u.rain}/20</b></div>
-<div class="metric"><span>雪への配慮（仮）</span><b>${u.snow}/20</b></div>
-<div class="metric"><span>地震安全度（仮）</span><b>${u.quake}/20</b></div><p style="font-size:12px">${u.comment}</p>
-<div class="note">注意：数値は動作確認用の仮データです。大学選びの判断には使用しないでください。</div>`}
+<div class="metric"><span>猛暑日・真夏日</span><b>${u.heat}/20</b></div>
+<div class="metric"><span>日較差</span><b>${u.temperature}/20</b></div>
+<div class="metric"><span>年間降水量</span><b>${u.rain}/20</b></div>
+<div class="metric"><span>洪水</span><b>${u.flood}/20</b></div>
+<div class="metric"><span>地震リスク</span><b>${u.quake}/20</b></div><p style="font-size:12px">${u.comment}</p>
 universities.forEach(u=>{const m=L.marker([u.lat,u.lon]).addTo(map).bindPopup(popup(u));m.uni=u;markers.push(m)});
 function render(q=""){list.innerHTML="";const matches=universities.filter(u=>(u.name+u.region).toLowerCase().includes(q.trim().toLowerCase()));
 if(!matches.length){list.innerHTML='<p class="hint">該当する大学がありません。</p>';return}
