@@ -29,21 +29,21 @@ footer{padding:12px 16px;background:white;color:#64748b;font-size:11px;border-to
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const universities=[
-{name:"北海道大学（札幌）",region:"北海道",lat:43.0766,lon:141.3403,heat:20,rain:20,temperature:10.2,quake:17.9,flood:16,comment:""},
-{name:"弘前大学（文京町）",region:"青森県",lat:40.5895,lon:140.4712,heat:19,rain:20,temperature:4.6,quake:19.7,flood:13,comment:""},
+{name:"北海道大学（札幌キャンパス）",region:"北海道",lat:43.0766,lon:141.3403,heat:20,rain:20,temperature:10.2,quake:17.9,flood:16,comment:""},
+{name:"弘前大学（文京町キャンパス）",region:"青森県",lat:40.5895,lon:140.4712,heat:19,rain:20,temperature:4.6,quake:19.7,flood:13,comment:""},
 {name:"国際教養大学",region:"秋田県",lat:39.6390,lon:140.2180,heat:18.1,rain:17.8,temperature:7.7,quake:19.7,flood:16,comment:""},
-{name:"東北大学（川内）",region:"宮城県",lat:38.2555,lon:140.8364,heat:16.2,rain:20,temperature:8.4,quake:19.1,comment:""},
+{name:"東北大学（川内キャンパス）",region:"宮城県",lat:38.2555,lon:140.8364,heat:16.2,rain:20,temperature:8.4,quake:19.1,comment:""},
 {name:"筑波大学",region:"茨城県",lat:36.1113,lon:140.1010,heat:11,rain:20,temperature:0,flood:16,quake:6.8,comment:""},
-{name:"東京大学（本郷）",region:"東京都",lat:35.7126,lon:139.7628,heat:10.7,rain:16.6,temperature:7.7,flood:16,quake:10,comment:""},
-{name:"早稲田大学（早稲田）",region:"東京都",lat:35.7056,lon:139.7190,heat:10.7,rain:16.6,temperature:7.7,flood:12,quake:10,comment:""},
-{name:"金沢大学（角間）",region:"石川県",lat:36.5466,lon:136.7080,heat:13,rain:9.8,temperature:10.9,flood:16,quake:18.72,comment:""},
-{name:"名古屋大学（東山）",region:"愛知県",lat:35.1555,lon:136.9667,heat:4.7,rain:17.8,temperature:6.7,flood:16,quake:12.4,comment:""},
-{name:"京都大学（吉田）",region:"京都府",lat:35.0262,lon:135.7808,heat:3,rain:19.2,temperature:6.3,flood:12,quake:17.4,comment:""},
-{name:"大阪大学（豊中）",region:"大阪府",lat:34.8024,lon:135.4610,heat:5.9,rain:19.3,temperature:6.4,flood:16,quake:11,comment:""},
-{name:"神戸大学（六甲台）",region:"兵庫県",lat:34.7250,lon:135.2360,heat:10.8,rain:19.4,temperature:14,flood:16,quake:19.8,comment:""},
-{name:"広島大学（東広島）",region:"広島県",lat:34.4013,lon:132.7135,heat:6.2,rain:16.7,temperature:6.3,flood:12,quake:19.2,comment:""},
-{name:"九州大学（伊都）",region:"福岡県",lat:33.5968,lon:130.2205,heat:6.6,rain:16.2,temperature:13,flood:16,quake:19.5,comment:""},
-{name:"琉球大学（千原）",region:"沖縄県",lat:26.2500,lon:127.7650,heat:9.2,rain:7.5,temperature:20,flood:20,quake:16.2,comment:""}
+{name:"東京大学（本郷キャンパス）",region:"東京都",lat:35.7126,lon:139.7628,heat:10.7,rain:16.6,temperature:7.7,flood:16,quake:10,comment:""},
+{name:"早稲田大学（早稲田キャンパス）",region:"東京都",lat:35.7056,lon:139.7190,heat:10.7,rain:16.6,temperature:7.7,flood:12,quake:10,comment:""},
+{name:"金沢大学（角間キャンパス）",region:"石川県",lat:36.5466,lon:136.7080,heat:13,rain:9.8,temperature:10.9,flood:16,quake:18.72,comment:""},
+{name:"名古屋大学（東山キャンパス）",region:"愛知県",lat:35.1555,lon:136.9667,heat:4.7,rain:17.8,temperature:6.7,flood:16,quake:12.4,comment:""},
+{name:"京都大学（吉田キャンパス）",region:"京都府",lat:35.0262,lon:135.7808,heat:3,rain:19.2,temperature:6.3,flood:12,quake:17.4,comment:""},
+{name:"大阪大学（豊中キャンパス）",region:"大阪府",lat:34.8024,lon:135.4610,heat:5.9,rain:19.3,temperature:6.4,flood:16,quake:11,comment:""},
+{name:"神戸大学（六甲台キャンパス）",region:"兵庫県",lat:34.7250,lon:135.2360,heat:10.8,rain:19.4,temperature:14,flood:16,quake:19.8,comment:""},
+{name:"広島大学（東広島キャンパス）",region:"広島県",lat:34.4013,lon:132.7135,heat:6.2,rain:16.7,temperature:6.3,flood:12,quake:19.2,comment:""},
+{name:"九州大学（伊都キャンパス）",region:"福岡県",lat:33.5968,lon:130.2205,heat:6.6,rain:16.2,temperature:13,flood:16,quake:19.5,comment:""},
+{name:"琉球大学（千原キャンパス）",region:"沖縄県",lat:26.2500,lon:127.7650,heat:9.2,rain:7.5,temperature:20,flood:20,quake:16.2,comment:""}
 ];
 const map=L.map('map').setView([37.2,137.8],5);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:18}).addTo(map);
