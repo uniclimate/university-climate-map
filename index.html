@@ -16,6 +16,40 @@ main{padding:14px;min-width:0}#map{height:calc(100vh - 135px);min-height:420px;b
 .metric{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid #e2e8f0;font-size:12px}.popup-title{font-size:16px;font-weight:800;margin-bottom:6px}.popup-sub,.note{font-size:11px;color:#64748b;margin:5px 0}
 footer{padding:12px 16px;background:white;color:#64748b;font-size:11px;border-top:1px solid #e2e8f0}
 @media(max-width:760px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid #e2e8f0}#university-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.uni-button{margin:0}#map{height:55vh;min-height:350px}}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: #334155;
+  font-size: 13px;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-dot.national {
+  background: #2563eb;
+}
+
+.legend-dot.public {
+  background: #16a34a;
+}
+
+.legend-dot.private {
+  background: #e11d48;
+}
 </style>
 </head>
 <body>
