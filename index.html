@@ -145,12 +145,123 @@ const universities=[
 const map=L.map('map').setView([37.2,137.8],5);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:18}).addTo(map);
 const markers=[],list=document.getElementById('university-list'),search=document.getElementById('search');
-function popup(u){return `<div class="popup-title">${u.name}</div><div class="popup-sub">${u.region}・位置は概略</div>
-<div class="metric"><span>猛暑日・真夏日</span><b>${u.heat}/20</b></div>
-<div class="metric"><span>日較差</span><b>${u.temperature}/20</b></div>
-<div class="metric"><span>年間降水量</span><b>${u.rain}/20</b></div>
-<div class="metric"><span>洪水</span><b>${u.flood}/20</b></div>
-<div class="metric"><span>地震リスク</span><b>${u.quake}/20</b></div><p style="font-size:12px">${u.comment}</p>`}
+function radarChart(u) {
+  const labels = [
+    "猛暑日・真夏日",
+    "日較差",
+    "年間降水量",
+    "洪水",
+    "地震リスク"
+  ];
+
+  const values = [
+    u.heat,
+    u.temperature,
+    u.rain,
+    u.flood,
+    u.quake
+  ];
+
+  const cx = 150;
+  const cy = 130;
+  const radius = 80;
+  const maxValue = 20;
+
+  function point(value, index, scale = 1) {
+    const angle = (-90 + index * 72) * Math.PI / 180;
+    const r = radius * scale * Math.max(
+      0, Math.min(maxValue, Number(value) || 0)
+    ) / maxValue;
+
+    return [
+      cx + r * Math.cos(angle),
+      cy + r * Math.sin(angle)
+    ];
+  }
+
+  function polygon(scale) {
+    return values.map((v, i) => {
+      const p = point(v, i, scale);
+      return `${p[0]},${p[1]}`;
+    }).join(" ");
+  }
+
+  const grid = [0.25, 0.5, 0.75, 1].map(scale =>
+    `<polygon points="${labels.map((_, i) => {
+      const p = point(maxValue, i, scale);
+      return `${p[0]},${p[1]}`;
+    }).join(" ")}"
+      fill="none" stroke="#cbd5e1" stroke-width="1"/>`
+  ).join("");
+
+  const axes = labels.map((_, i) => {
+    const p = point(maxValue, i);
+    return `<line x1="${cx}" y1="${cy}"
+      x2="${p[0]}" y2="${p[1]}"
+      stroke="#cbd5e1"/>`;
+  }).join("");
+
+  const textLabels = labels.map((label, i) => {
+    const p = point(maxValue, i, 1.28);
+    return `<text x="${p[0]}" y="${p[1]}"
+      text-anchor="middle" dominant-baseline="middle"
+      font-size="10" fill="#334155">${label}</text>`;
+  }).join("");
+
+  const dots = values.map((v, i) => {
+    const p = point(v, i);
+    return `<circle cx="${p[0]}" cy="${p[1]}" r="3"
+      fill="#2563eb"/>`;
+  }).join("");
+
+  return `
+    <div style="text-align:center;margin-top:12px">
+      <b>気候・災害評価レーダーチャート</b>
+      <svg viewBox="0 0 300 270"
+        style="width:100%;max-width:340px;height:auto">
+        ${grid}
+        ${axes}
+        <polygon points="${polygon(1)}"
+          fill="#3b82f6" fill-opacity="0.25"
+          stroke="#2563eb" stroke-width="2"/>
+        ${dots}
+        ${textLabels}
+      </svg>
+      <p style="font-size:11px;color:#64748b">
+        外側ほど評価値が大きい（最大20）
+      </p>
+    </div>`;
+}function popup(u) {
+  return `
+    <div class="popup-title">${u.name}</div>
+    <div class="popup-sub">${u.region}・位置は概略</div>
+
+    <div class="metric">
+      <span>猛暑日・真夏日</span>
+      <b>${u.heat}/20</b>
+    </div>
+    <div class="metric">
+      <span>日較差</span>
+      <b>${u.temperature}/20</b>
+    </div>
+    <div class="metric">
+      <span>年間降水量</span>
+      <b>${u.rain}/20</b>
+    </div>
+    <div class="metric">
+      <span>洪水</span>
+      <b>${u.flood}/20</b>
+    </div>
+    <div class="metric">
+      <span>地震リスク</span>
+      <b>${u.quake}/20</b>
+    </div>
+
+    ${radarChart(u)}
+
+    <p style="font-size:12px">${u.comment || ""}</p>
+  `;
+}
 universities.forEach(u=>{const m=L.marker([u.lat,u.lon]).addTo(map).bindPopup(popup(u));m.uni=u;markers.push(m)});
 function render(q=""){list.innerHTML="";const matches=universities.filter(u=>(u.name+u.region).toLowerCase().includes(q.trim().toLowerCase()));
 if(!matches.length){list.innerHTML='<p class="hint">該当する大学がありません。</p>';return}
