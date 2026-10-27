@@ -23,7 +23,12 @@ footer{padding:12px 16px;background:white;color:#64748b;font-size:11px;border-to
 <div class="layout">
 <aside><label for="search">大学名・地域で検索</label><input id="search" type="search" placeholder="例：東北大学、京都" autocomplete="off">
 <p class="hint">地図のマーカー、または下の大学名を押してください。</p><div id="university-list"></div></aside>
-<main><div id="map" aria-label="大学の位置を示す地図"></div><p class="legend"></p></main>
+<main><div id="map" aria-label="大学の位置を示す地図"></div><div class="legend">
+  <strong>大学の種類</strong>
+  <span><i class="legend-dot national"></i>国立大学</span>
+  <span><i class="legend-dot public"></i>公立大学</span>
+  <span><i class="legend-dot private"></i>私立大学</span>
+</div></main>
 </div>
 <footer>大学の気候マップ｜参考：・・・</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
