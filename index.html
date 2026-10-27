@@ -350,7 +350,17 @@ function getUniversityType(u) {
 });
 function render(q=""){list.innerHTML="";const matches=universities.filter(u=>(u.name+u.region).toLowerCase().includes(q.trim().toLowerCase()));
 if(!matches.length){list.innerHTML='<p class="hint">該当する大学がありません。</p>';return}
-  matches.forEach(u=>{const b=document.createElement('button');b.className='uni-button';b.innerHTML=`<strong>${u.name}</strong><span>${u.region}</span>`;b.onclick=()=>{map.setView([u.lat,u.lon],11);const m=markers.find(x=>x.uni===u);if(m)m.openPopup()};list.appendChild(b)})}
+  matches.forEach(u=>{const b=document.createElement('button');b.className='uni-button';b.innerHTML=`<strong>${u.name}</strong><span>${u.region}</span>`;b.onclick = () => {
+  map.setView([u.lat, u.lon], 11);
+
+  const m = markers.find(x => x.uni === u);
+  if (m) m.openPopup();
+
+  document.getElementById("map").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+};;list.appendChild(b)})}
 search.addEventListener('input',()=>render(search.value));render();
 </script>
 </body></html>
