@@ -292,7 +292,16 @@ function radarChart(u) {
       <span>地震リスク</span>
       <b>${u.quake}/20</b>
     </div>
-
+ <div class="metric">
+      <span><strong>5項目の合計点</strong></span>
+      <b>${(
+        Number(u.heat) +
+        Number(u.temperature) +
+        Number(u.rain) +
+        Number(u.flood) +
+        Number(u.quake)
+      ).toFixed(1)}/100点</b>
+    </div>
     ${radarChart(u)}
 
     <p style="font-size:12px">${u.comment || ""}</p>
